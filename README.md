@@ -8,18 +8,26 @@ official Flutter plugin's native bindings don't exist yet for `go-flutter-deskto
 (see plugins they have bindings for [here](https://github.com/go-flutter-desktop/plugins)).
 
 Now somebody did start working on it, but the current upstreamed version only supports
-rendering video, no audio. Simply approximates speed using the framerate. And
-suposedly memory leaks.
+rendering video, no audio, and simply approximates speed using the framerate. There are also
+memory leaks.
 
 **Our goals is to get this video player plugin to support the same interface as
 the upstream video_player plugin and work on linux, windows and mac (with the
 help of ffmpeg, but open to using something else that can easily be embedded)**
 
-We've already gave a shot at this, that work can be found in the `go/cmd/video_player.go`
-file. It does support audio decoding and playing but syncing needs work to make
+The current video_player implementation can be found in [`go/cmd/video_player.go`](https://github.com/telefuel/video_player_testbed/blob/master/go/cmd/video_player.go). 
+It does support audio decoding and playing but syncing needs work to make
 playback work smoothly.
 
 An interesting tutorial talking about writing an ffmpeg based media player 
 can be found here: http://dranger.com/ffmpeg/tutorial05.html
 
 And other ressource would be the `ffplay` example ffmpeg based player: https://git.ffmpeg.org/gitweb/ffmpeg.git/blob/HEAD:/fftools/ffplay.c
+
+## Dependencies
+* `go` 1.13 or higher
+* `flutter` latest
+* `hover` latest. Install: `GO111MODULE=on go get -u -a github.com/go-flutter-desktop/hover`
+
+## Development
+For development, enter `make run` to launch a `go-flutter` desktop window. Press play to start playing the video. When making code changes, you'll have to start the process over.
