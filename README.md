@@ -1,16 +1,25 @@
 # video_player_testbed
 
-A new Flutter project.
+Telefuel wants to use [go-flutter-desktop](https://github.com/go-flutter-desktop/go-flutter/)
+in order to build a cross platform desktop app.
 
-## Getting Started
+Sadly the [`video_player`](https://github.com/flutter/plugins/tree/master/packages/video_player)
+official Flutter plugin's native bindings don't exist yet for `go-flutter-desktop`
+(see plugins they have bindings for [here](https://github.com/go-flutter-desktop/plugins)).
 
-This project is a starting point for a Flutter application.
+Now somebody did start working on it, but the current upstreamed version only supports
+rendering video, no audio. Simply approximates speed using the framerate. And
+suposedly memory leaks.
 
-A few resources to get you started if this is your first Flutter project:
+**Our goals is to get this video player plugin to support the same interface as
+the upstream video_player plugin and work on linux, windows and mac (with the
+help of ffmpeg, but open to using something else that can easily be embedded)**
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+We've already gave a shot at this, that work can be found in the `go/cmd/video_player.go`
+file. It does support audio decoding and playing but syncing needs work to make
+playback work smoothly.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+An interesting tutorial talking about writing an ffmpeg based media player 
+can be found here: http://dranger.com/ffmpeg/tutorial05.html
+
+And other ressource would be the `ffplay` example ffmpeg based player: https://git.ffmpeg.org/gitweb/ffmpeg.git/blob/HEAD:/fftools/ffplay.c
